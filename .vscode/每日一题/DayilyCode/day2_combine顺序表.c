@@ -27,7 +27,7 @@ Sqlist Merge_1(Sqlist &A, Sqlist &B) {
     }
     return C;
 }
-// 9.19review 90/100
+
 SqList Merge_2(SqList&A, SqList&B) {
     Sqlist C;
     C.length = A.length + B.length;
@@ -44,7 +44,7 @@ SqList Merge_2(SqList&A, SqList&B) {
     if(i < A.length){
         C[k++] = A[i++];
     }
-    else if (j < B.length){
+    if (j < B.length){
         C[k++] = B[j++];
     }
     return C;

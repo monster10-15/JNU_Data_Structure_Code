@@ -29,8 +29,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/monster/Desktop/数据结构",
-      "program": "c:/Users/monster/Desktop/数据结构/build/Debug/outDebug",
+      "cwd": "e:/数据结构",
+      "program": "e:/数据结构/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
