@@ -5,10 +5,9 @@ int isBalanced(char *expr) {
     for (int i = 0; expr[i] != '\0'; ++i) {
         if (expr[i] == '(') {
             push(&s, '(');
-        } else if (expr[i] == ')') {
-            if (isEmpty(&s)) {
-                return 0;
-            }
+        }
+        else if (expr[i] == ')') {
+            if(isEmpty(&s))  return 0;
             pop(&s);
         }
     }

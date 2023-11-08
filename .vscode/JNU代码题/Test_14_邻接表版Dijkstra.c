@@ -39,9 +39,11 @@ void Dijkstra(Graph* graph, int src, int* dist) {
         visited[i] = false;
     }
     dist[src] = 0;
+    
     for (int count = 0; count < V - 1; count++) {
         int u = -1;
         int minDist = INF;
+
         // 选择距离最小的顶点
         for (int i = 0; i < V; i++) {
             if (!visited[i] && dist[i] < minDist) {

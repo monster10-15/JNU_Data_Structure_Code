@@ -1,8 +1,8 @@
-// TODO: 广度优先遍历
+//! 广度优先遍历
 // 算法思想: 初始化访问标记数组及队列
 // BFS: 1、找到与一个顶点相邻的顶点2、标记哪些顶点被访问过3、需要一个辅助队列4、图的基本操作
-// 1) FirstAdjVex (G, v)：求图G中頂点的第一个邻接点，若存在，则返回顶点号，若v不存在邻接点或图中不存在x，則返回-1
-// 2) NextAdjvex (G, v, w)：除v外的，下一个邻接点W，若存在，则返回顶点号，若v不存在邻接点或图中不存在x，則返回-1
+// (1) FirstAdjVex (G, v)：求图G中頂点的第一个邻接点，若存在，则返回顶点号，若v不存在邻接点或图中不存在x，則返回-1
+// (2) NextAdjvex (G, v, w)：除v外的，下一个邻接点W，若存在，则返回顶点号，若v不存在邻接点或图中不存在x，則返回-1
 for(i=0;i<G.vexnum;i++){
     visited[v]=0;// 数组
     InitQueue(Q);// 队列
@@ -40,7 +40,7 @@ void BFS(Graph G, int v){
         }
     }
 }
-// TODO: BFS newbing version
+//! BFS newbing version
 // 初始化访问标记数组 // 初始化队列Q // 邻接图
 int visited[G.vexnum];
 for(int i=0; i<G.vexnum; i++){
@@ -77,7 +77,7 @@ int NextAdjVex(MGraph G, int v, int w){
     return -1;
 }
 
-// TODO: 1025 review: 50/100
+//! 1025 review: 50/100
 //1.初始化队列 && 标记访问数组并初始化为0 && 邻接图
 Queue Q;
 InitQueue(Q);
@@ -117,7 +117,7 @@ void NextAdjVex(G, v, w){
         return -1; // 没有就算了
     }
 }
-// TODO: 1026 review: 60/100
+//! 1026 review: 60/100
 // step 1: 初始化
 Queue Q;
 InitQueue(Q);
@@ -157,7 +157,7 @@ void NextAdjVex(G, v, w){
         }
     }
 }
-// TODO: 1027 review: 100/100
+//! 1027 review: 100/100
 Queue Q;
 Init Queue(Q);
 EdgeType arcs[MaxSize][MaxSize];

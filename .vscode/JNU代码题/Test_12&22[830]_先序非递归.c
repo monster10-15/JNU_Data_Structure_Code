@@ -34,3 +34,24 @@ void PreOrder(BiTree T){
         }
     }
 }
+// 22-830-代码填空题（1）
+// 先序的非递归算法
+void PreOrderTraverse(BiTree T, Status (*Visit)(TElemType))
+{
+    BTNode *p;
+    SqStack *st;
+    InitStack(st);
+    if (T != NULL)
+    {
+        Push(st, T);
+        while (!StackEmpty(st))
+        {
+            Pop(st, &p);
+            Visit(p->data);
+            if (p->lchild != NULL)
+                Push(st, p->lchild);
+            if (p->rchild != NULL)
+                Push(st, p->rchild);
+        }
+    }
+}

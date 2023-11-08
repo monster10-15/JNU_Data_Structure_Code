@@ -8,7 +8,7 @@ typedef struct BiTNode {
 // 删除二叉排序树中的一个节点
 Status DeleteBST(BiTree &T, KeyType key) {
     if (!T) return FALSE; // 如果树为空，则返回FALSE
-    else {
+    else { 
         if (EQ(key, T->data.key)) return Delete(T); // 如果找到了要删除的节点，则删除该节点
         else if (LT(key, T->data.key)) return DeleteBST(T->lchild, key); // 如果要删除的节点的值小于当前节点的值，则在左子树中删除
         else return DeleteBST(T->rchild, key); // 如果要删除的节点的值大于当前节点的值，则在右子树中删除
@@ -36,8 +36,8 @@ Status Delete(BiTree &p) {
             s = s->rchild; 
         }
         p->data = s->data; // 用左子树中最大的节点替代要删除的节点
-        if (q != p) q->rchild = s->lchild; // 如果最大的节点不是左子树的根节点，则需要调整左子树的结构
-        else q->lchild=NULL; // 如果最大的节点是左子树的根节点，则将左子树设置为NULL
+        if (q != p) q->rchild = s->lchild; // 如果最大的节点不是左子树的根节点
+        else q->lchild=s->lchild; // 如果最大的节点是左子树的根节点
         free(s); // 释放最大的节点
     }
     return TRUE;

@@ -16,3 +16,4 @@ bool delete_same_1(Sqlist&L){
     return true;
 }
 // 0923review:100/100
+

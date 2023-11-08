@@ -1,13 +1,9 @@
 已知f为单链表的表头指针，链表中存储的都是整型数据，请写出实现下列运算的递归算法，求(1)链表中最大整数;(2)所有整数的平均值。
 // 定义链表节点
-#include <stdio.h>
-#include <stdlib.h>
-
 typedef struct Node{
     int data; // 数据
     struct Node* next; // 下一个节点
 }Node;
-
 // 定义求最大值的函数
 int Max(Node* f){
     if(f == NULL){
@@ -18,7 +14,6 @@ int Max(Node* f){
         return f->data > max_next ? f->data : max_next; // 返回当前节点和子链表最大值中的较大者
     }
 }
-
 // 定义求总和的函数
 int Sum(Node* f){
     if(f == NULL){
@@ -28,7 +23,6 @@ int Sum(Node* f){
         return f->data + Sum(f->next); // 返回当前节点的数据和子链表的总和
     }
 }
-
 // 定义求长度的函数
 int Length(Node* f){
     if(f == NULL){
@@ -46,19 +40,34 @@ int main(){
     L->next->data = 2;
     L->next->next = (Node*)malloc(sizeof(Node));
     L->next->next->data = 3;
-    L->next->next->next = NULL;
-
+    L->next->next->next = NULL
     // 计算最大值、总和和长度
     int max = Max(L);
     int sum = Sum(L);
     int len = Length(L);
-
     // 计算平均值
     double average = len > 0 ? (double)sum / len : 0;
-
     // 打印结果
     printf("Max: %d\n", max);
     printf("Average: %.2f\n", average);
-
     return 0;
 }
+
+
+int Max(Node *f){
+    if(f==null){
+        return -1;
+    }
+    int max = Max(f->next);
+    return  f->data > max ? f->data : max;
+}
+int Length(Node *f){
+    if(f==null){
+        return -1;
+    }
+    return 1+Length(f->next);
+}
+int Sum(Node *f){
+    if(f==null){ return 0;}
+    return f->data+Sum(f->next);
+    }

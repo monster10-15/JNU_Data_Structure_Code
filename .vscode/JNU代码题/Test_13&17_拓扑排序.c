@@ -7,12 +7,13 @@
 同时，它会遍历该顶点的所有邻接顶点，并将邻接顶点的入度减1。如果邻接顶点的入度变为0，那么就将其压入栈中。
 最后，如果输出的顶点数小于图中的顶点数，那么就返回false，表示图中存在环；否则，返回true，表示成功进行了拓扑排序。
 '''
+//! 邻接表版
 bool TP(Graph G){
     InitStack(S);// 使用一个栈来存储所有入度为0的顶点
     for(int i = 0; i < G.vexnum; i++){
         if(G.indegree[i] == 0){// 入度为0
             push(S, i);
-        }
+        } 
     }
     int count = 0;
     while(!IsEmpty(S)){ // 如栈不为空，不断地从栈中弹出顶点，并将其输出
@@ -34,27 +35,37 @@ bool TP(Graph G){
     if(count < G.vexnum) return false;
     else return true;// 否则，返回true，表示成功进行了拓扑排序
 }
-// 1031 review: 80/100
-bool TP(Graph G){
+// ! 邻接矩阵版
+#define MAX_VERTEX_NUM 100 // 最大顶点数
+typedef struct {
+    int arcs[MAX_VERTEX_NUM][MAX_VERTEX_NUM]; // 邻接矩阵
+    int vexnum, arcnum; // 顶点数和边数
+    int indegree[MAX_VERTEX_NUM]; // 顶点的入度
+} Graph;
+bool TP(Graph G) {
     InitStack(S);
-    int count=0;
-    for(int i=0; i<G.vexnum; i++){
-        if(G.indegree[i]==0){
-            push(S,i);
+    int count = 0;
+    for (int i = 0; i < G.vexnum; i++) {
+        if (G.indegree[i] == 0) {
+            push(S, i);
         }
     }
-    while(!IsEmpty(S)){
+    while (!IsEmpty(S)) {
         int v;
-        pop(S,v);
-        printf("%d", v);
+        pop(S, v);
+        printf("%d ", v); // 添加空格来分隔输出的顶点
         count++;
-        for(int w=FirstAdj(G,v); w>0; w=NextAdj(G,v,w)){
-            if(--G.indegree[w]==0){
-                push(S,w);
+        for (int w = 0; w < G.vexnum; w++) {
+            if (G.arcs[v][w] == 1) {
+                if (--G.indegree[w] == 0) {
+                    push(S, w);
+                }
             }
         }
-        
     }
-    if(count<G.vexnum){ return false;}
-    else{ return true; }
+    if (count == G.vexnum) { // 如果 count 等于顶点数，表示成功进行了拓扑排序
+        return true;
+    } else {
+        return false; // 否则，表示存在环
+    }
 }

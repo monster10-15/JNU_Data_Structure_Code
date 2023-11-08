@@ -19,7 +19,7 @@ bool Delete_1(Sqlist&L, Elemtype s, elemtype t){
             L.data[i-k]=L.data[i];
         }
         i++; 
-    }az=
+    }
     L.length=n-k;
     return true;
 }
@@ -37,6 +37,7 @@ bool Delete_2(Sqlist&L, Elemtype s, Elemtype t){
         else{
             L.data[i-k]=L.data[i];
         }
+        i++;
     }
     L.length=n-k;
     return true;
