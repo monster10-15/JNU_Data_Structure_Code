@@ -55,6 +55,7 @@ typedef struct Graph{
     int verterxnum; // 顶点数
     Node** AdjList; // 邻接数组
 }Graph;
+
 int DFS(Graph* G, int Begin, int End, int k){
     // Step 1: 初始化访问标记数组以及路径长度
     static int* visited; // 访问标记数组

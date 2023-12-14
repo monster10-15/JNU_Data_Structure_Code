@@ -35,7 +35,7 @@ bool TP(Graph G){
     if(count < G.vexnum) return false;
     else return true;// 否则，返回true，表示成功进行了拓扑排序
 }
-// ! 邻接矩阵版
+//! 邻接矩阵版
 #define MAX_VERTEX_NUM 100 // 最大顶点数
 typedef struct {
     int arcs[MAX_VERTEX_NUM][MAX_VERTEX_NUM]; // 邻接矩阵

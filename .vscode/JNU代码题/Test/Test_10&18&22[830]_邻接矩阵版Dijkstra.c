@@ -43,6 +43,43 @@ void dijkstra(Graph G, int v0, int prev[], int dist[]) {
         }
     }
 }
+// 12.12 review:80/100[曲线救国部分不太熟]
+typedef struct{
+    int vexnum;
+    int arcnum;
+    int martrix[vexnum][vexnum];
+}Graph;
+void Dijkstra(Graph G, int v0, int prev[], int dist[]){
+    // step1 初始化flag、prev、dist
+    for(int i = 0; i < G.vexnum; i++){
+        flag[i] = 0;
+        prev[i] = -1;
+        dist[i] = G.martrix[v0][i];
+    }
+    // step2 对源点自身进行初始化
+    flag[v0]=1;
+    dist[v0]=0;
+    // step3 曲线救国寻找【v0->k + k->j < v0->j】
+    for(int i = 1; i <= G.vexnum; i++) {
+        int min = INF;
+        int k = v0;
+        for(int j = 0; j <= G.vexnum; j++) { // 这个是j在遍历
+            if(flag[j]==0 && dist[j]<min){  //这一节需要着重记忆 
+                min=dist[j];// upgrade min distance
+                k=j;
+            }
+        }
+        flag[k]=1;
+        // step4 找另一半边
+        for(int j=0; j<G.vexnum; j++){ // 这个也是j在遍历
+            if(G.martrix[k][j]+min<dist[j] && flag[j]==0){
+                dist[j]=G.martrix[k][j]+min;
+            }
+            flag[j]=1;
+            prev[j]=k;
+        }
+    }
+}
 
 // 1109 review: 80/100
 void Dijkstra(Graph G, int v0, int prev[], int dist[]){

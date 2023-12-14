@@ -1,3 +1,4 @@
+// 输入n个元素的值，创建带头结点的单链表
 SqList Create(int n){
     LinkList *L=malloc(LinkNode*);
     LinkNode *p=malloc(LinkNode*);

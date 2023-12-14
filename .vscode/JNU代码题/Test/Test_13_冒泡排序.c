@@ -1,4 +1,3 @@
-
 typedef struct{
     int key;
     infotype otherinfo;

@@ -21,8 +21,6 @@ int InOrder(BiTree T, int k){
         }
     }
 }
-
-
 //! 非递归先序找第K个元素
 void Find_k(BiTree T, int k){
     InitStack(S);
