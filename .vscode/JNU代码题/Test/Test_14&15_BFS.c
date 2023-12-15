@@ -91,6 +91,7 @@ void BFS(Graph &G, int v){
     visited[v]=1; // 访问初始结点后马上标记为1且入队
     EnQueue(Q, v);
     while(!IsEmpty(Q)){// 如果Q不空的话就找个与此点相邻的另一个点
+    DeQueue(Q, v);
     // FirstAdj: 找图G中顶点的第一个邻接点 （往复）NextAdjvex: 找第二个邻接点
         for(int w = FirstAdjVex(G, v); w >=0; w = NextAdjVex(G, v, w)){
             if(visited[w]==0){ // 找到了没访问过的新点点
@@ -132,6 +133,7 @@ void BFS(Graph G, int v){
     EnQueue(Q, v);
     visited[v] = 1;
     while(!IsEmpty(Q)){ // 为 第一个点点 提供 找呀找呀找朋友 服务 
+    DeQueue(Q, v);
         for(w=FirstAdjVex(G, v); w>0; w=NextAdjVex(G, v, w)){
             if(visited[w]==0){
                 visit(w);
@@ -158,38 +160,3 @@ void NextAdjVex(G, v, w){
     }
 }
 //! 1027 review: 100/100
-Queue Q;
-Init Queue(Q);
-EdgeType arcs[MaxSize][MaxSize];
-int visited[G.vexnum];
-for(i=0; i>MaxSize;i++){
-    visited[i] =0;
-}
-void BFS(Graph G, int v){
-    visit(v);
-    visited[v]=1;
-    EnQueue(Q, v);
-    while(!Q){
-        for(int w=firstAdjvex(G, v);w>0;w=NextAdjvex(G,v,W)){
-            if(visited[w] == 0){
-                visit(w);
-                visited[w] = 1;
-                EnQueue(Q, w);
-            }
-        }
-    }
-}
-void FirstAdjvex(Graph G, int v){
-    for(int i=0; i<G.vexnum;i++){
-        if(arcs[v][i]==1){
-            return i;
-        }
-    }
-}
-void NextAdjvex(Graph G, int v, int w){
-    for(int i=w+1; i<G.vexnum;i++){
-        if(arcs[v][i]==1){
-            return i;
-        }
-    }
-}

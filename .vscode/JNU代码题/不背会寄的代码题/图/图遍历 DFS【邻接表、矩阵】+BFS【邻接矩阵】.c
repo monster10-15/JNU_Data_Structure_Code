@@ -133,10 +133,11 @@ for(i=0;i<G.vexnum;i++){
 }
 // step 2: BFS
 void BFS(Graph G, int v){
-    visit(v);// 为第一个点点提供 访问 入队 标记 一条龙服务
+    visit(v);// 为第一个点点 提供 访问 入队 标记 一条龙服务
     EnQueue(Q, v);
     visited[v] = 1;
     while(!IsEmpty(Q)){ // 为 第一个点点 提供 找呀找呀找朋友 服务 
+        DeQueue(Q,v);
         for(w=FirstAdjVex(G, v); w>0; w=NextAdjVex(G, v, w)){
             if(visited[w]==0){
                 visit(w);

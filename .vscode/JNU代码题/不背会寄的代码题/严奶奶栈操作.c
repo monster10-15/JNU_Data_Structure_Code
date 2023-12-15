@@ -29,7 +29,7 @@ Status GetTop(SqStack S, SElemType& e) {
 	printf("该栈的栈顶元素是：%d", e);
 	return 0;
 }
-//? 入栈
+//? 入栈[考过]
 Status Push(SqStack& S, SElemType e) {
 	if (S.top - S.base > S.stacksize) {//栈满追加存储空间
 		S.base = (SElemType*)realloc(S.base, (S.stacksize + STACKINCREMENT) * sizeof(SElemType));
