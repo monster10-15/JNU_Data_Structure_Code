@@ -1,47 +1,5 @@
-采用邻接表存储结构，编写一个算法，判别无向图中任意给定的两个顶点之间是否存在条长度为 k 的简单路径。
-// 定义邻接表节点
-// typedef struct Node{
-//     int vertex; // 顶点
-//     struct Node* next; // 下一个节点
-// }Node;
-// 定义邻接表
-// typedef struct Graph{
-//     int numVertices; // 顶点数
-//     Node** adjLists; // 邻接表数组
-// }Graph;
-// 定义深度优先搜索函数
-// int DFS(Graph* graph, int startVertex, int endVertex, int k){
-//     static int pathLength = 0; // 路径长度
-//     static int* visited; // 访问标记数组
-//     // 初始化访问标记数组
-//     if(pathLength == 0){
-//         visited = (int*)malloc(graph->numVertices * sizeof(int));
-//         for(int i = 0; i < graph->numVertices; i++){
-//             visited[i] = 0;
-//         }
-//     }
-//     visited[startVertex] = 1; // 标记起始顶点为已访问
-//     pathLength++; // 增加路径长度
-//     if(startVertex == endVertex && pathLength == k+1){ // 如果当前顶点就是目标顶点 且 路径长度为k
-//         return 1;
-//     }
-//     else{ // 如果当前顶点和目标顶点不一样或者路径长度不等于k那么继续遍历邻接表 
-//         Node* temp = graph->adjLists[startVertex]; // 【看看当前节点还有没有链接别的节点】
-//         while(temp){// 【如果还有分岔路口就往前走】
-//             if(visited[temp->vertex] == 0){ // 如果邻接顶点未被访问【这条路还没被人走过】
-//                 if(DFS(graph, temp->vertex, endVertex, k)){ // 递归搜索邻接顶点【递归往前走】
-//                     return 1;
-//                 }
-//             }
-//             temp = temp->next;
-//         }
-//     }
-// 如果都不符合要求 就回溯【吃回头草】
-//     visited[startVertex] = 0; // 标记起始顶点为未访问【从头来过】
-//     pathLength--; // 减少路径长度【抹去痕迹】
-//     return 0;
-// }
 //! 邻接矩阵的DFS
+//! [2020]采用邻接表存储结构，判别无向图中任意给定的两个顶点之间是否有长度为k的简单路径
 typedef struct Node{
     int vertex; // 顶点
     struct Node* next; // 下一个节点
@@ -84,7 +42,7 @@ int DFS(Graph* G, int Begin, int End, int k){
     return 0;
 }
 
-//! [2022]采用邻接表存储结构，编写一个算法，判别无向图是否连通
+//! [2022]采用邻接表存储结构，判别无向图是否连通
 #define vertexnum 100 // 定义最大顶点数为100
 // 定义邻接节点的数据结构
 struct AdjNode {
@@ -108,7 +66,6 @@ void dfs(Graph* g, int v) {
         p = p->next; // 移动到下一个邻接节点
     }
 }
-
 // 判断图是否连通的函数
 int isConnected(Graph* g) {
     for (int i = 0; i < g->vertexnum; i++) { // 初始化所有顶点为未访问状态
@@ -122,7 +79,9 @@ int isConnected(Graph* g) {
     }
     return 1; // 所有顶点都被访问过，返回1，表示图连通
 }
-// 邻接矩阵版
+
+
+//! 邻接矩阵版BFS
 // step 1: 初始化
 Queue Q;
 InitQueue(Q);
