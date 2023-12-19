@@ -1,15 +1,54 @@
+// newbing标准版
+// 快速排序
+int Qsort(int L[], int low, int high){
+    // 如果low小于high，那么数组中至少有两个元素
+    if(low < high){
+        // 对数组进行划分
+        int pivot = partition(L, low, high);
+        // 对左子数组进行快速排序
+        Qsort(L, low, pivot-1);
+        // 对右子数组进行快速排序
+        Qsort(L, pivot+1, high);
+    }
+}
+
+int partition(int L[], int low, int high){
+    // 用于交换元素的临时变量
+    int temp =0;
+    // 选择第一个元素作为枢轴
+    int pivot = L[low];
+    while(low < high){
+        // 从右向左找到第一个小于枢轴的元素
+        while(low < high && L[high] >= pivot){
+            high--;
+        }
+        // 从左向右找到第一个大于枢轴的元素
+        while(low < high && L[low] <= pivot){
+            low++;
+        }
+        // 如果low小于high，交换这两个元素
+        if(low < high){
+            temp = L[low];
+            L[low] = L[high];
+            L[high] = temp;
+        }
+    }
+    // 将枢轴放到正确的位置
+    L[low] = pivot;
+    // 返回枢轴的位置
+    return low;
+}
+
+
 // 定义最大数组大小
 #define Maxsize 100
-
 // 定义键类型
 typedef int keytype;
-
 // 定义记录类型
 typedef struct {
     keytype key; // 键
     Infotype otherinfo; // 其他信息
 } RedType;
-
 // 定义顺序表类型
 typedef struct {
     RedType r[Maxsize+1]; // 记录数组，r[0]用作哨兵或临时存储
@@ -32,12 +71,14 @@ int Partition(SqList &L, int low, int high) {
     while (low < high) { // 从表的两端交替向中间扫描
         while (low < high && L.r[high].key >= pivotkey) high--; // 找到比基准小的记录
         L.r[low] = L.r[high]; // 将比基准小的记录移到低端
-        while (low < high && L.r[low].key <= pivotkey) low++; // 找到比基准大的记录
+        while (low < high && L.r[low].key < pivotkey) low++; // 找到比基准大的记录
         L.r[high] = L.r[low]; // 将比基准大的记录移到高端
     }
     L.r[low] = L.r[0]; // 将基准记录移到正确的位置
     return low; // 返回基准的位置
 }
+
+
 // 2020年考察的形式变了（那个pivot从前面换成后面了）
 假设一维数组 A 保存有 N 个整数，以下快速排序算法代码能够对数组 A 进行排序。请在处填上适当内容，使其成为一个完整的算法。
 // 定义分区函数
