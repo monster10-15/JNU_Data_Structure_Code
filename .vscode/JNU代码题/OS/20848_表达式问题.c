@@ -1,3 +1,5 @@
+// 分析给出的表达式的并行性，并用信号量机制实现该表达式的并行计算
+// (3*a*b+4)/(c+d)^(e-f)
 #include <stdio.h>
 #include <pthread.h>
 #include <semaphore.h>
