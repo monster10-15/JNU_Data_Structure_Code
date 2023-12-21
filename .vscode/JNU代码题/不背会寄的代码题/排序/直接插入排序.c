@@ -1,5 +1,7 @@
 void straightforwardSort(LinkList L){
-    LinkList *p, *pre, *q; // 定义三个指针，p相当于pivot，pre用于找到目标结点的前一个节点，q用于暂时保存p的下一个结点方便p开启新一轮的循环
+    LinkList *p, *pre, *q; 
+    // 定义三个指针，p相当于pivot，pre用于遍历&标记 目标结点的前一个节点
+    // q用于暂时保存p的下一个结点，方便p开启新一轮的循环比较
 
     p = L->next->next; // 从第二个节点开始排序，因为单个节点可以看作已排序
     L->next->next = NULL; // 将第一个节点独立出来，作为已排序部分
