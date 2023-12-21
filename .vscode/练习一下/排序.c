@@ -67,3 +67,26 @@ int partition(int L[], int low, int high){
     // 返回枢轴的位置
     return low;
 }
+
+
+// 直接插入排序
+void ZJSort(LinkList &L){
+    LinkNode *p, *q, *pre;
+
+    p=L->next->next; // 将第一个节点独立出来，作为已排序部分
+    L->next->next=NULL;
+
+    while(p!=NULL){
+        q=p->next;// q保存p的下一个，方便它下一次遍历
+        pre=L;
+        // 如果后面的结点都大于p，就继续遍历
+        while(pre->next!=NULL && pre->next->data < p->data){
+            pre=pre->next;
+        }
+        // 如果找到pre->next->data比p 还要小 那么 p主动插到pre后
+        p->next=pre->next;
+        pre->next=p;
+        // 继续开启新循环
+        p=q;
+    }
+}

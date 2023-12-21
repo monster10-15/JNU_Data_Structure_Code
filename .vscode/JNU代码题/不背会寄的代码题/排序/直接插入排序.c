@@ -15,6 +15,7 @@ void straightforwardSort(LinkList L){
         }
 
         // 找到了！！！接着把这俩互换，这样就能维持前面的小后面的大【顺序递增】了
+        // 如果找到pre->next->data比p 还要小 那么 p主动插到pre后
         p->next = pre->next; 
         pre->next = p;
         p=q; // p从q点【最初的p->next】继续出发（￣︶￣）↗　开启新一轮循环
