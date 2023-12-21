@@ -81,7 +81,7 @@ int isConnected(Graph* g) {
 }
 
 
-//! 邻接矩阵版BFS
+//! [2014 & 2015] 邻接矩阵版BFS
 // step 1: 初始化
 Queue Q;
 InitQueue(Q);
