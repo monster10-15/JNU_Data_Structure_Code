@@ -5,11 +5,12 @@ void straightforwardSort(LinkList L){
     while(p!=NULL){ // 遍历未排序部分
         q=p->next; // 保存p的下一个节点
         pre=L; // 从头开始找插入位置
-        while(pre->next!=NULL && pre->next->data < p->data){ // 找到第一个大于p的节点
-            pre=pre->next; // 更新pre
+        while(pre->next!=NULL && pre->next->data < p->data){ // 如果后面的结点都大于p
+            pre=pre->next; // 就继续遍历【因为要找到比p小的结点和p对换】
         }
-        p->next = pre->next; // 插入p
+        // 找到了！！！接着把这俩互换，这样就能维持前面的小后面的大【顺序递增】了
+        p->next = pre->next; 
         pre->next = p;
-        p=q; // p指向下一个待排序节点
+        p=q; // p从q点继续出发（￣︶￣）↗　
     }
 }
