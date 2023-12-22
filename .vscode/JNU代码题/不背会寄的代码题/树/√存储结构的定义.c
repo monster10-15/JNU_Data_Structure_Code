@@ -7,6 +7,6 @@ typedef struct ThreadNode{
 
 // 孩子兄弟链表的存储结构
 typedef struct CSNode{
-    char data;
+    ElemType data;
     struct CSNode *firstChild, *nextsibling;
 }CSNode, CSTree; 

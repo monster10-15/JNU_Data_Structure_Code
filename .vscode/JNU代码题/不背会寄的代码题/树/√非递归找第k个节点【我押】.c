@@ -44,25 +44,34 @@ void Find_k(BiTree T, int k){
     }
 }
 //! 后序非递归找第K个元素
-int PostOrder(BiTree T, int k) {
-    Stack *top;
-    InitStack(&top);
+void PostOrderKth(BiTree T, int k){
+    Stack S;
+    InitStack(&S);
     BiTree p = T;
-    int tag, count = 0;
-    while (p || !IsEmpty(top)) {
-        while (p) {
-            Push(&top, p, 0);
-            p = p->lchild;
+    BiTree r = NULL;
+    int count = 0; // 添加计数器
+    while(p || !StackEmpty(S)){
+        if(p->lchild){
+            Push(&S,p);// 一路向左
+            p = p->lchild;// 左孩子不空，一直向左走
         }
-        Pop(&top, &p, &tag);
-        if (tag == 0) {
-            Push(&top, p, 1);
-            p = p->rchild;
-        } else {
-            count++;
-            if (count == k) return p->data;
-            p = NULL;
+        else{
+            BiTree *top=GetTop(S,p);// 栈顶元素
+            if(top->rchild && top->rchild != r){// 若右子树非空且未被访问过
+                p = top->rchild;
+                Push(&S,p);
+                p = p->lchild;// 转左
+            }
+            else{// 若右子树为空或被访问过则出栈
+                Pop(&S,p);
+                count++; // 访问一个节点，计数器加1
+                if(count == k){ // 如果计数器等于k
+                    visit(p); // 访问该节点
+                    break; // 找到第k个节点，结束循环
+                }
+                r = p;// r标记最近访问过的结点
+                p = NULL;
+            }
         }
     }
-    return -1;
 }

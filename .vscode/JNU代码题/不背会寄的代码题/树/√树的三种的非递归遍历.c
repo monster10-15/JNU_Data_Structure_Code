@@ -47,7 +47,7 @@ void InOrder(BiTree T){
 // TODO: 后序的非递归算法
 // 算法思想: ①、左孩子一一入栈 ②、读栈顶top,若top的右孩子不空且未被访问就将右子树执行①
 // ③、栈顶元素出栈 ④、标记置空
-// TODO: 入栈向左一直走，登顶判定右子树，出栈访问，标记，重置
+// TODO: 入栈向左一直走，登顶判定右转左，出栈访问，标记，重置
 void PostOrder(BiTree T){
     Stack S;
     InitStack(&S);
@@ -63,7 +63,7 @@ void PostOrder(BiTree T){
             if(top->rchild && top->rchild != r){// 若右子树非空且未被访问过
                 p = top->rchild;
                 Push(&S,p);
-                p = p->lchild;
+                p = p->lchild;// 转左
             }
             else{// 若右子树为空或被访问过则出栈
                 Pop(&S,p);
