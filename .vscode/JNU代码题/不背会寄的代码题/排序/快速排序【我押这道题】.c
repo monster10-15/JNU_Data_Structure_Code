@@ -1,15 +1,12 @@
 // 定义最大数组大小
 #define Maxsize 100
-
 // 定义键类型
 typedef int keytype;
-
 // 定义记录类型
 typedef struct {
     keytype key; // 键
     Infotype otherinfo; // 其他信息
 } RedType;
-
 // 定义顺序表类型
 typedef struct {
     RedType r[Maxsize+1]; // 记录数组，r[0]用作哨兵或临时存储
@@ -38,6 +35,7 @@ int Partition(SqList &L, int low, int high) {
     L.r[low] = L.r[0]; // 将基准记录移到正确的位置
     return low; // 返回基准的位置
 }
+
 // 2020年考察的形式变了（那个pivot从前面换成后面了）
 假设一维数组 A 保存有 N 个整数，以下快速排序算法代码能够对数组 A 进行排序。请在处填上适当内容，使其成为一个完整的算法。
 // 定义分区函数
