@@ -16,12 +16,12 @@ void Sort(SqList &L){
 //TODO: 设一个带头结点的单链表L，数据元素为整数，其中大部分为正数，少数为负数，编写函数，实现将负数结点移到链表尾部，并返回调整后链表第一个负数结点的位置。要求先给出算法思想，再写出相应的算法
 '''思路:
 1.找到最后一个结点，用尾指针标记
-2.遍历链表，把负数结点尾插到尾指针后
-3.最后，尾指针下一位就是第一个负数结点
+2.遍历链表，把负数结点尾插到尾指针后【尾指针不动】
+3.这样，尾指针下一位就是第一个负数结点
 '''
 LinkNode* Change(LinkList &L){
     if(L==NULL) return NULL;
-    LinkNode *p = L->next, *r = L, *s, *temp, *pre=L;
+    LinkNode *p = L->next, *r = L, *temp;
     // step1: 找到最后一个结点并用r标记
     while(r->next != NULL){
         r = r->next;
@@ -29,14 +29,12 @@ LinkNode* Change(LinkList &L){
     // step2: 遍历链表，把负数结点尾插到r后
     while(p != NULL){
         if(p->data >= 0){
-            pre = p;
             p = p->next;
         }
         else{
             temp = p->next;
             p->next =r->next;
             r->next = p;
-            pre->next = temp;
             p = temp;
         }
     }

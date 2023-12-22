@@ -1,40 +1,9 @@
 // TODO: 假设有两个按元素递增次序排列的线性表，均以单链表的形式存储，请将这俩单链表归并为一个按元素递减次序排列的单链表。
 // TODO: 并要求利用原本两个单链表的结点存放归并后的单链表。
-// 算法思想: AB分别设置指针p,q,依次比较p的值和q的值，将较小的头插进合并链表中，直到其中一条为空，就把剩下的链表结点依次头插即可
-// 删除重复节点
-LinkList Merge_1(LinkList& A, LinkList& B) {
-    LNode* p = A->next, * q = B->next, * r;
-    A->next = NULL;
-    LNode* head = A;
-    while (p != NULL && q != NULL) {
-        if (p->data < q->data) {
-            r = p->next;
-            p->next = head->next;
-            head->next = p;
-            p = r;
-        } else {
-            r = q->next;
-            q->next = head->next;
-            head->next = q;
-            q = r;
-        }
-    }
-    while (p != NULL) {
-        r = p->next;
-        p->next = head->next;
-        head->next = p;
-        p = r;
-    }
-    while (q != NULL) {
-        r = q->next;
-        q->next = head->next;
-        head->next = q;
-        q = r;
-    }
-    return A;
-}
-// 1007 review 80/100
-LinkList Merge_2(LinkList& A, LinkList& B) {
+// 算法思想: AB分别设置遍历指针pa,pb,依次比较pa的值和pb的值，将较小的头插进合并链表中，【A为合并链表】
+// 直到其中一条为空，就把剩下的链表结点依次头插即可
+
+LinkList Merge(LinkList& A, LinkList& B) {
     LNode *pa = A->next, *pb = B->next;
     LNode *temp;
     while (pa != NULL && pb != NULL) {
