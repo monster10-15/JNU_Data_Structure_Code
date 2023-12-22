@@ -77,6 +77,7 @@ void QuickSort(int* A, int N, int p, int r){
     }
     return;
 }
+
 void main(){
     QuickSort(A,N,0,N-1); 
     return 0;
